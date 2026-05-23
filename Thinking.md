@@ -20,17 +20,37 @@ What would frustrate her:
 **Edge Case 1 — Price on exact boundary date:**
 If a price changes on Dec 1, and the salesperson 
 enters Dec 1 as the date — which price applies? 
-The old one or the new one? This needs a clear rule.
+The old one or the new one? This needs a clear 
+rule. My rule: the new price applies from 
+valid_from date onwards — so Dec 1 gets the 
+new price.
 
 **Edge Case 2 — Missing price for a date:**
 If a part was added in March 2016 but someone 
-queries January 2016 — there is no valid price. 
-The system should handle this gracefully, not crash.
+queries January 2016 — there is no valid price 
+for that date. The system should handle this 
+gracefully with a clear warning message, 
+not crash silently.
 
 **Edge Case 3 — Part discontinued:**
 A part may have been removed from the catalogue 
-after a certain date. The system should indicate 
-this rather than showing wrong or zero pricing.
+after a certain date. The system should clearly 
+indicate this rather than showing wrong or 
+zero pricing to the salesperson.
+
+**Edge Case 4 — Future date query:**
+If a salesperson accidentally enters a future 
+date like 2030, no price entry exists that far 
+ahead. The system should show a clear message:
+"Price not available for this date" rather than 
+returning a wrong value or crashing.
+
+**Edge Case 5 — No parts selected:**
+If a salesperson clicks Calculate without 
+selecting any parts, the system should not 
+crash or show ₹0 silently. It should show 
+a clear message: "Please select at least 
+one part to calculate price."
 
 ### 3. My Plan
 
@@ -41,10 +61,10 @@ valid_until date (null if currently active),
 and the price value.
 
 **Handling price changes over time:**
-When a date is given, the engine will look through 
-the price_history of each selected part and find 
-the entry where the date falls between 
-valid_from and valid_until.
+When a date is given, the engine will look 
+through the price_history of each selected 
+part and find the entry where the date falls 
+between valid_from and valid_until.
 
 **Structuring the output:**
 Output will show price grouped by high-level 
