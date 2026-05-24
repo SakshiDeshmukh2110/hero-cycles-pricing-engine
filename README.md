@@ -39,11 +39,17 @@ python tests.py
 Running all tests...
 
 ✅ Test 1 Passed — Price correct before Dec 2016
+
 ✅ Test 2 Passed — Price correct after Dec 2016
+
 ✅ Test 3 Passed — Boundary date uses new price
+
 ✅ Test 4 Passed — Unknown part handled gracefully
+
 ✅ Test 5 Passed — Empty parts handled gracefully
+
 ✅ Test 6 Passed — Multiple parts total correct
+
 
 🎉 All 6 tests passed!
 
